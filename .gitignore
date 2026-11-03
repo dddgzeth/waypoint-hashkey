@@ -32,3 +32,14 @@ backend/plan.txt*
 
 # internal handoff notes (test logins, server details)
 *HANDOFF.md
+
+# working notes, kept locally only
+HACKATHON-RECAP.md
+devpost_submission*.md
+youtube_submission.md
+logo_prompt.md
+plan*.md
+deck/HSK_PITCH_SCRIPT.md
+deploy/*.md
+frontend/DESIGN.md
+supporting-materials/*.md

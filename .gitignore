@@ -56,3 +56,6 @@ logo/final/waypoint-logo-lockup-small.png
 logo/final/waypoint-logo-square-*.png
 backend/*-tmp2.*
 backend/tests/asp-*
+
+HSK_DEMO_SCRIPT.md
+HSK_SUBMISSION.md

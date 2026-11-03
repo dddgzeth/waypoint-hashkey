@@ -43,3 +43,16 @@ deck/HSK_PITCH_SCRIPT.md
 deploy/*.md
 frontend/DESIGN.md
 supporting-materials/*.md
+
+# not part of the HSK submission
+deck/Waypoint_Build-a-Company_Deck.pptx
+deck/Waypoint_Deck.pptx
+deploy/
+supporting-materials/
+frontend/index.html
+logo/logo-full.png
+logo/final/waypoint-logo-icon-only.png
+logo/final/waypoint-logo-lockup-small.png
+logo/final/waypoint-logo-square-*.png
+backend/*-tmp2.*
+backend/tests/asp-*

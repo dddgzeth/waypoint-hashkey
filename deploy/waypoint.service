@@ -1,0 +1,23 @@
+[Unit]
+Description=Waypoint backend
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/Waypoint/backend
+EnvironmentFile=/opt/Waypoint/backend/.env
+Environment=NODE_ENV=production
+Environment=PORT=8787
+Environment=CORS_ORIGIN=https://waypoint.cjlin.com
+Environment=SIWE_DOMAIN=waypoint.cjlin.com
+Environment=WAYPOINT_DATA_DIR=/opt/Waypoint/backend/data
+ExecStart=/usr/bin/node /opt/Waypoint/backend/dist/server.js
+Restart=on-failure
+RestartSec=3
+TimeoutStopSec=20
+UMask=0077
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,34 @@
+# secrets and local state
+.env
+.env.*
+!.env.example
+**/secrets/
+*.pem
+*.key
+*.db
+*.db-shm
+*.db-wal
+**/data/
+
+# build output and dependencies
+node_modules/
+dist/
+
+# scratch and one-off scripts
+backend/_hsk-*.mts
+backend/*-tmp.*
+backend/*.bak
+backend/plan.txt
+backend/ex2-tmp.ts
+backend/real-run-tmp.ts
+backend/xl-tmp.mts
+
+# large media and OS noise
+demo-video/
+bgm/
+.DS_Store
+._*
+backend/plan.txt*
+
+# internal handoff notes (test logins, server details)
+*HANDOFF.md

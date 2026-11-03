@@ -1,0 +1,42 @@
+import type { Chain as ViemChain } from "viem";
+
+/**
+ * Everything the app needs to know about one chain, in one place. To add a
+ * new chain: create chains/<name>.ts exporting one of these, then add it to
+ * the CHAINS registry in chains/index.ts — nothing else needs to change,
+ * every other file (planner.ts, the /chains API route,
+ * the frontend chain list) derives from that registry.
+ */
+export interface ChainConfig {
+  /** Internal key used everywhere in plans/state/URLs, e.g. "base". */
+  key: string;
+  /** Human-readable name for UI display, e.g. "Robinhood Chain". */
+  label: string;
+  chainId: number;
+  viemChain: ViemChain;
+  nativeSymbol: string;
+  /** Aave V3 core Pool contract address, only if Aave is actually deployed on this chain — omit rather than guess. */
+  aavePool?: `0x${string}`;
+  /** The chain's wrapped native token (WETH-style deposit/withdraw), verified on-chain. Omit where there is none. */
+  wrappedNative?: { address: `0x${string}`; symbol: string };
+  /**
+   * Alchemy's network slug for this chain (e.g. "base-mainnet"), used for
+   * real token discovery (alchemy_getTokenBalances). ERC-20 metadata and
+   * balances are then read from each discovered contract through its ABI.
+   */
+  alchemyNetwork?: string;
+  /** CoinMarketCap DEX API "platform" id for this chain (e.g. "base"), used to price arbitrary discovered tokens by contract address via /v1/dex/token/price — verified real per chain via a live call, not assumed. */
+  cmcPlatform?: string;
+  /**
+   * For chains where Alchemy's token-discovery API isn't available (e.g. X Layer): discover
+   * balances by reading the chain's own Aave V3 Pool reserve list on-chain and checking
+   * balanceOf for each. Requires aavePool. Nothing is hardcoded per token.
+   */
+  discoverViaAaveReserves?: boolean;
+  /** A public RPC endpoint, for a chain Alchemy doesn't serve (testnets). Used instead of Alchemy for every read and write on this chain. */
+  publicRpc?: string;
+  /** Marks a test network. Planning is told to use it only when the user asks for it by name. */
+  testnet?: boolean;
+  /** ERC-20 contracts to check balanceOf for on a chain with no token discovery (neither Alchemy's token API nor an Aave reserve list). */
+  knownTokens?: `0x${string}`[];
+}
